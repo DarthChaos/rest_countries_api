@@ -37,12 +37,12 @@ function Header() {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-600 text-black dark:text-white flex flex-row justify-between px-14 py-3 shadow">
+    <div className="bg-white dark:bg-dark-blue flex flex-row justify-between px-14 py-3 shadow-md">
       <div className="font-bold self-center">Where in the world?</div>
       <button
         type="button"
         onClick={onColorClick}
-        className="bg-inherit border-0 text-sm font-semisolid p-2 flex flex-row"
+        className="bg-inherit border-0 font-semibold p-2 flex flex-row"
       >
         <span
           className={classnames('pi mr-2 font-medium self-center', color.icon)}
