@@ -1,11 +1,11 @@
 import React from 'react';
+import { InputText, Dropdown } from '../InputElements';
 
 function Home() {
   return (
-    <div className="container flex flex-row">
-      <div className="justify-between">
-        <input placeholder="Search for a country" className="mt-8 ml-10 " />
-      </div>
+    <div className="container mt-8 w-full flex flex-row justify-between">
+      <InputText />
+      <Dropdown />
     </div>
   );
 }
