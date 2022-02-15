@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="bg-gray-50 dark:bg-slate-700 font-sans">
       <Header />
       <Home />
     </div>
