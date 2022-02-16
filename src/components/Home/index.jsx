@@ -57,6 +57,7 @@ function Home() {
               className="align-middle"
               img={`https://countryflagsapi.com/png/${country.un_code}`}
               title={country.official}
+              code={country.un_code}
               countryInfoObject={{
                 Population: country.population,
                 Region: country.region,
