@@ -11,7 +11,9 @@ function Home() {
   const state = useSelector(async ({ countriesReducer }) => {
     const stateValues = await countriesReducer;
 
-    return stateValues.countries || [];
+    if (stateValues) return stateValues.countries;
+
+    return [];
   });
   const dispatch = useDispatch();
 

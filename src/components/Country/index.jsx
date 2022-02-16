@@ -69,13 +69,22 @@ export default function Country() {
                 )
             )}
           </div>
-          <div className="mt-10">
-            <p className="font-semibold">
-              Border Countries{' '}
-              <span>
-                <button type="button">France</button>
-              </span>
-            </p>
+          <div className="mt-10 flex flex-row gap-3">
+            <p className="font-semibold">Border Countries:</p>
+            <div>
+              {country.borders?.map(({ official, code }) => (
+                <button
+                  key={`country-button-${code}`}
+                  type="button"
+                  className="shadow border border-collapse px-3"
+                  onClick={() =>
+                    navigate(`/${code}`, { state: { country: code } })
+                  }
+                >
+                  {official}
+                </button>
+              )) || null}
+            </div>
           </div>
         </div>
       </div>

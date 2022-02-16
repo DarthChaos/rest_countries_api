@@ -48,18 +48,19 @@ const getCountries = async (state, action) => {
 
     case GET_COUNTRY: {
       const filterState = await state;
-      const countryInfo = filterState.countries.filter(
-        (c) => c.code === action.payload
-      )[0];
+
+      const countryInfo = {
+        ...filterState.countries.filter((c) => c.code === action.payload)[0],
+      };
 
       countryInfo.borders = countryInfo.borders.map((cca3Code) => {
-        const { official, code } = filterState.countries.filter(
+        const borderCountries = filterState.countries.filter(
           ({ cca3 }) => cca3 === cca3Code
         )[0];
 
         return {
-          official,
-          code,
+          official: borderCountries.official,
+          code: borderCountries.code,
         };
       });
 
