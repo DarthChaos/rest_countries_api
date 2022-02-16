@@ -1,7 +1,13 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const reducers = combineReducers({});
+import thunkMiddleware from 'redux-thunk';
 
-const store = createStore(reducers);
+import countriesReducer from './countries/reducer';
+
+const composeEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware));
+const reducers = combineReducers({ countriesReducer });
+
+const store = createStore(reducers, composeEnhancer);
 
 export default store;
