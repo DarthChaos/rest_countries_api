@@ -12,10 +12,14 @@ function Home() {
   const dispatch = useDispatch();
 
   const [items, setItems] = useState([]);
+  const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
 
   const onInputChange = ({ target: { value } }) => {
     setSearch(value);
+  };
+  const onFilterChange = ({ value }) => {
+    setFilter(value);
   };
 
   useEffect(() => {
@@ -38,12 +42,14 @@ function Home() {
     <div className="container flex flex-col">
       <div className="mt-8 w-full flex flex-row justify-between">
         <InputText value={search} onChange={onInputChange} />
-        <Dropdown />
+        <Dropdown value={filter} onChange={onFilterChange} />
       </div>
       <div className="grid grid-cols-4 gap-x-6 mx-12 my-8">
         {items
-          .filter((item) =>
-            item.official.toLowerCase().includes(search.toLowerCase())
+          .filter(
+            (item) =>
+              item.official.toLowerCase().includes(search.toLowerCase()) &&
+              item.continents.some((c) => !filter || c.includes(filter))
           )
           .map((country) => (
             <CountryCard
