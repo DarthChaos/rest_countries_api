@@ -8,7 +8,11 @@ import CountryCard from '../Card';
 import { fetchCountries } from '../../store/countries/reducer';
 
 function Home() {
-  const state = useSelector(({ countriesReducer }) => countriesReducer);
+  const state = useSelector(async ({ countriesReducer }) => {
+    const stateValues = await countriesReducer;
+
+    return stateValues.countries || [];
+  });
   const dispatch = useDispatch();
 
   const [items, setItems] = useState([]);
@@ -29,17 +33,13 @@ function Home() {
   useEffect(() => {
     Promise.resolve(state)
       .then((e) => {
-        if (e) setItems(e.countries);
+        if (e) setItems(e);
       })
       .catch((err) => console.log('err', err));
   }, [state]);
 
-  useEffect(() => {
-    console.log('items', items);
-  }, [items]);
-
   return (
-    <div className="container flex flex-col">
+    <div className="container flex flex-col h-screen">
       <div className="mt-8 w-full flex flex-row justify-between">
         <InputText value={search} onChange={onInputChange} />
         <Dropdown value={filter} onChange={onFilterChange} />
@@ -55,9 +55,9 @@ function Home() {
             <CountryCard
               key={`country-card-${country.official}`}
               className="align-middle"
-              img={`https://countryflagsapi.com/png/${country.un_code}`}
+              img={`https://countryflagsapi.com/png/${country.code}`}
               title={country.official}
-              code={country.un_code}
+              code={country.code}
               countryInfoObject={{
                 Population: country.population,
                 Region: country.region,

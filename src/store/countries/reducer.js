@@ -3,7 +3,7 @@ import axios from 'axios';
 import opts from './countriesOpts.json';
 
 const getCountries = async (state, action) => {
-  const { ALL_COUNTRIES } = opts;
+  const { ALL_COUNTRIES, GET_COUNTRY } = opts;
 
   switch (action.type) {
     case ALL_COUNTRIES: {
@@ -24,6 +24,7 @@ const getCountries = async (state, action) => {
             languages,
             borders,
             ccn3,
+            cca3,
           }) => ({
             official,
             // eslint-disable-next-line
@@ -37,10 +38,34 @@ const getCountries = async (state, action) => {
             // eslint-disable-next-line
             currencies: Object.values(currencies || {})[0]?.name || '',
             languages: Object.values(languages || {}).join(', '),
-            borders,
-            un_code: ccn3,
+            borders: borders || [],
+            code: ccn3,
+            cca3,
           })
         ),
+      };
+    }
+
+    case GET_COUNTRY: {
+      const filterState = await state;
+      const countryInfo = filterState.countries.filter(
+        (c) => c.code === action.payload
+      )[0];
+
+      countryInfo.borders = countryInfo.borders.map((cca3Code) => {
+        const { official, code } = filterState.countries.filter(
+          ({ cca3 }) => cca3 === cca3Code
+        )[0];
+
+        return {
+          official,
+          code,
+        };
+      });
+
+      return {
+        ...filterState,
+        countryInfo,
       };
     }
 
