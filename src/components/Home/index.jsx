@@ -12,6 +12,11 @@ function Home() {
   const dispatch = useDispatch();
 
   const [items, setItems] = useState([]);
+  const [search, setSearch] = useState('');
+
+  const onInputChange = ({ target: { value } }) => {
+    setSearch(value);
+  };
 
   useEffect(() => {
     dispatch(fetchCountries);
@@ -32,32 +37,27 @@ function Home() {
   return (
     <div className="container flex flex-col">
       <div className="mt-8 w-full flex flex-row justify-between">
-        <InputText />
+        <InputText value={search} onChange={onInputChange} />
         <Dropdown />
       </div>
       <div className="grid grid-cols-4 gap-x-6 mx-12 my-8">
-        {items.map((country) => (
-          <CountryCard
-            key={`country-card-${country.official}`}
-            className="align-middle"
-            img={`https://countryflagsapi.com/png/${country.un_code}`}
-            title={country.official}
-            countryInfoObject={{
-              Population: country.population,
-              Region: country.region,
-              Capital: country.capital,
-            }}
-          />
-        ))}
-        <CountryCard
-          img="https://countryflagsapi.com/png/276"
-          title="Germany"
-          countryInfoObject={{
-            Population: '81.770.900',
-            Region: 'Europe',
-            Capital: 'Berlin',
-          }}
-        />
+        {items
+          .filter((item) =>
+            item.official.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((country) => (
+            <CountryCard
+              key={`country-card-${country.official}`}
+              className="align-middle"
+              img={`https://countryflagsapi.com/png/${country.un_code}`}
+              title={country.official}
+              countryInfoObject={{
+                Population: country.population,
+                Region: country.region,
+                Capital: country.capital,
+              }}
+            />
+          ))}
       </div>
     </div>
   );
