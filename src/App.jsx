@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Provider {...{ store }}>
-        <div className="bg-very-light-gray dark:bg-very-dark-blue text-almost-black-blue dark:text-white text-sm font-sans">
+        <div className=" bg-very-light-gray dark:bg-very-dark-blue text-almost-black-blue dark:text-white text-sm font-sans">
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />

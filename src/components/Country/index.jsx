@@ -34,24 +34,24 @@ export default function Country() {
   }, [state]);
 
   return (
-    <div className="container mx-8 mt-10 h-screen">
+    <div className="mx-8 mt-10 h-full desktop:h-screen">
       <button
         type="button"
-        className="dark:bg-dark-blue dark:border-0 shadow-md rounded-sm border border-collapse py-1 px-5 justify-start"
+        className="bg-white dark:bg-dark-blue dark:border-0 shadow-md rounded-sm border border-collapse py-1 px-5 justify-start"
         onClick={onButtonClick}
       >
         <span className="pi pi-arrow-left mr-3" />
         Back
       </button>
-      <div className="flex flex-row mt-10">
+      <div className="flex flex-col desktop:flex-row mt-16 desktop:mt-10 max-w-screen-mobile desktop:max-w-screen-desktop">
         <img
-          className="w-2/5"
+          className="w-full desktop:w-3/6"
           src={`https://countryflagsapi.com/png/${params.country}`}
           alt="Germany"
         />
-        <div className="px-16 py-10">
+        <div className="desktop:px-16 py-10">
           <p className="font-bold text-xl">{title}</p>
-          <div className="mt-5 grid grid-cols-2 gap-x-16">
+          <div className="mt-5 grid desktop:grid-cols-2 gap-x-16">
             {Object.entries(country).map(
               ([k, v]) =>
                 !['official', 'code', 'cca3', 'borders'].includes(k) && (
@@ -69,14 +69,14 @@ export default function Country() {
                 )
             )}
           </div>
-          <div className="mt-10 flex flex-row gap-3">
-            <p className="font-semibold">Border Countries:</p>
-            <div>
+          <div className="mt-10 flex flex-col desktop:flex-row gap-3">
+            <p className="font-bold">Border Countries:</p>
+            <div className="flex flex-wrap gap-1">
               {country.borders?.map(({ official, code }) => (
                 <button
                   key={`country-button-${code}`}
                   type="button"
-                  className="shadow border border-collapse px-3"
+                  className="bg-white dark:bg-dark-blue dark:border-0 shadow border border-collapse px-3"
                   onClick={() =>
                     navigate(`/${code}`, { state: { country: code } })
                   }
