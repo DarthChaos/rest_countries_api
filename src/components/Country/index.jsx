@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import scapeKeys from '../../data/countryKeysToScape.json';
+
 export default function Country() {
   const params = useParams();
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ export default function Country() {
           <div className="mt-5 grid desktop:grid-cols-2 gap-x-16">
             {Object.entries(country).map(
               ([k, v]) =>
-                !['official', 'code', 'cca3', 'borders'].includes(k) && (
+                !scapeKeys.includes(k) && (
                   <p
                     className="font-semibold mb-2"
                     key={`country-paragraph-${k}-${v}`}
@@ -83,7 +85,7 @@ export default function Country() {
                 >
                   {official}
                 </button>
-              )) || null}
+              )) || <p>No border countries</p>}
             </div>
           </div>
         </div>
