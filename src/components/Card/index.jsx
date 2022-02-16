@@ -9,7 +9,10 @@ export default function CountryCard({ img, title, countryInfoObject }) {
         <div className="font-bold text-xl mb-3">{title}</div>
         <div className="mb-5 flex flex-col">
           {Object.entries(countryInfoObject).map(([k, v]) => (
-            <p className="font-semibold text-sm mb-2">
+            <p
+              className="font-semibold text-sm mb-2"
+              key={`country-card-paragraph-${v}`}
+            >
               {k}: <span className="font-normal">{v}</span>
             </p>
           ))}
