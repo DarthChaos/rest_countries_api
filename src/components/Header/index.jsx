@@ -37,7 +37,7 @@ function Header() {
   };
 
   return (
-    <div className="bg-white dark:bg-dark-blue flex flex-row justify-between px-14 py-3 shadow-sm">
+    <div className="bg-white dark:bg-dark-blue flex flex-row justify-between px-3 desktop:px-14 py-3 shadow-sm">
       <div className="font-bold self-center">Where in the world?</div>
       <button
         type="button"

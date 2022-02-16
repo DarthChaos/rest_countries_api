@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-
 import { InputText, Dropdown } from '../InputElements';
+
 import CountryCard from '../Card';
+import regions from '../../data/dropdownRegions.json';
 
 import { fetchCountries } from '../../store/countries/reducer';
 
@@ -41,12 +42,12 @@ function Home() {
   }, [state]);
 
   return (
-    <div className="container flex flex-col h-screen">
-      <div className="mt-8 w-full flex flex-row justify-between">
+    <div className="container flex flex-col h-full w-screen">
+      <div className="mt-8 mx-3 desktop:mx-20 flex flex-col desktop:flex-row align-middle desktop:justify-between gap-8">
         <InputText value={search} onChange={onInputChange} />
-        <Dropdown value={filter} onChange={onFilterChange} />
+        <Dropdown value={filter} onChange={onFilterChange} options={regions} />
       </div>
-      <div className="grid grid-cols-4 gap-x-6 mx-12 my-8">
+      <div className="grid grid-cols-1 desktop:grid-cols-4 desktop:gap-x-20 mx-auto desktop:mx-20 my-8">
         {items
           .filter(
             (item) =>

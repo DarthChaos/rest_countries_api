@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import opts from './countriesOpts.json';
+import opts from '../../data/countriesOpts.json';
 
 const getCountries = async (state, action) => {
   const { ALL_COUNTRIES, GET_COUNTRY } = opts;

@@ -3,21 +3,13 @@ import { Dropdown as DD } from 'primereact/dropdown';
 
 import PropTypes from 'prop-types';
 
-export default function Dropdown({ value, onChange }) {
-  const regions = [
-    { label: 'Africa', value: 'Africa' },
-    { label: 'America', value: 'America' },
-    { label: 'Asia', value: 'Asia' },
-    { label: 'Europe', value: 'Europe' },
-    { label: 'Oceania', value: 'Oceania' },
-  ];
-
+export default function Dropdown({ value, onChange, options }) {
   return (
     <DD
-      {...{ value, onChange }}
-      className="h-10 dark:bg-dark-blue dark:border-0 dark:text-white font-sans p-dropdown"
+      {...{ value, onChange, options }}
+      className="h-10 dark:bg-dark-blue dark:border-0 dark:text-white font-sans text-sm"
       placeholder="Filter by Region"
-      options={regions}
+      panelClassName="dark:bg-dark-blue dark:border-0 dark:text-white text-sm"
     />
   );
 }
@@ -25,4 +17,10 @@ export default function Dropdown({ value, onChange }) {
 Dropdown.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  options: PropTypes.shape([
+    {
+      label: PropTypes.string,
+      value: PropTypes.string,
+    },
+  ]).isRequired,
 };
