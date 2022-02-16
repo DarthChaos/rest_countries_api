@@ -26,6 +26,7 @@ const getCountries = async (state, action) => {
             ccn3,
           }) => ({
             official,
+            // eslint-disable-next-line
             native_name: Object.values(nativeName || {})[0]?.common || '',
             population,
             region,
@@ -33,6 +34,7 @@ const getCountries = async (state, action) => {
             capital,
             continents,
             top_level_domain: tld,
+            // eslint-disable-next-line
             currencies: Object.values(currencies || {})[0]?.name || '',
             languages: Object.values(languages || {}).join(', '),
             borders,
