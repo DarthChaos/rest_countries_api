@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function CountryCard({ img, title, countryInfoObject }) {
   return (
-    <div className="max-w-xs w-64 rounded overflow-hidden shadow-md my-2">
+    <div className="max-w-xs w-64 rounded overflow-hidden shadow-md my-2 dark:bg-dark-blue">
       <img className="w-full" src={img} alt="Germany" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-3">{title}</div>
